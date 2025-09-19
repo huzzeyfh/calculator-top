@@ -39,24 +39,29 @@ function operate(firstNumber, operator, secondNumber) {
 //Display input
 container.addEventListener('click', (e) => {
     let target = e.target;
-    
+
     if (target.tagName != 'BUTTON') return;
 
     if (input.textContent == 0) {
-       input.textContent = '';
+        input.textContent = '';
     }
 
     if (e.target.classList.contains('btn-backspc')) {
-        return currentDisplay.slice(0, -1);
+        input.textContent = input.textContent.slice(0, -1);
+        if (input.textContent === '') {
+            input.textContent = '0';
+            return ;
+        }
+        return;
     }
 
     if (e.target.classList.contains('btn-clear')) {
-        input.textContent = 0;
-        return ;
+        input.textContent = '0';
+        return;
     }
 
     input.textContent += e.target.textContent;
     console.log(input.textContent);
-    return ;
+    return;
 })
 
