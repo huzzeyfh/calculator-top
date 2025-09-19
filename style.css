@@ -1,0 +1,44 @@
+body {
+    font-size: 18px;
+    height: 100vh;
+    margin: 0;
+    margin-top: 0.5em;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 18em;
+    height: 26em;
+    margin: 10px;
+}
+
+label,
+.number,
+.operator {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.3em;
+    margin: 0.2em;
+    justify-content: center;
+}
+
+label {
+    flex-grow: 1;
+}
+
+.number {}
+
+
+.operator {}
+
+button {
+    width: 4em;
+    height: 4em;
+    font-size: 1em;
+}
+
+.btn-backspc {
+    flex-grow: 1;
+}

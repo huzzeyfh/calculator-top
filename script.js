@@ -17,3 +17,16 @@ function multiply(a, b) {
 function divide(a, b) {
     return a / b;
 }
+
+
+//Variables
+const firstNumber;
+const operator;
+const secondNumber;
+
+
+//Operate
+function operate(firstNumber, operator, secondNumber) {
+    return add(firstNumber, secondNumber)
+}
+
