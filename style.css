@@ -13,7 +13,7 @@ body {
     margin: 10px;
 }
 
-label,
+.display,
 .number,
 .operator {
     display: flex;
@@ -24,7 +24,7 @@ label,
     justify-content: center;
 }
 
-label {
+.display {
     margin-left: 10px;
     margin-right: 10px;
     padding: 5px;
