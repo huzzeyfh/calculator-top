@@ -85,9 +85,20 @@ container.addEventListener('click', (e) => {
     }
 
     if (e.target.classList.contains('sum-button')) {
-        let firstNumber = input.textContent.charAt(0);
-        let operator = input.textContent.charAt(1);
-        let secondNumber = input.textContent.charAt(2);
+        const filterRe = /\d+.\f+/;
+        const arrCalc = filterRe
+
+        //get firstNumber
+        let splitFirstNum = /\d+/.exec(input.textContent);
+        let firstNumber = splitFirstNum[0];
+
+        //get operator
+        let splitOperator = /\D/.exec(input.textContent);
+        let operator = splitOperator[0];
+
+        //get secondNumber
+        let splitSecondNum = /\d+$/.exec(input.textContent);
+        let secondNumber = splitSecondNum[0];
 
         console.log(input.textContent);
         console.log(firstNumber);
