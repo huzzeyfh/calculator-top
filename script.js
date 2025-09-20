@@ -35,8 +35,8 @@ const input = document.querySelector('#input');
 
 //Operate
 const operate = function (firstNumber, operator, secondNumber) {
-    let a = Number(firstNumber);
-    let b = Number(secondNumber);
+    let a = parseFloat(firstNumber);
+    let b = parseFloat(secondNumber);
 
     if (operator === '+') {
         return add(a, b);
@@ -86,19 +86,22 @@ container.addEventListener('click', (e) => {
 
     if (e.target.classList.contains('sum-button')) {
 
-        //get firstNumber
-        let splitFirstNum = /\d+/.exec(input.textContent);
+        let splitFirstNum;
+        let splitOperator;
+        let splitSecondNum;
+
+        splitFirstNum = /\d+(\.\d+)?/.exec(input.textContent);
+        splitOperator = /[+\-x\/]/.exec(input.textContent);
+        splitSecondNum = /\d+(\.\d+)?$/.exec(input.textContent);
+
         let firstNumber = splitFirstNum[0];
-
-        //get operator
-        let splitOperator = /\D/.exec(input.textContent);
         let operator = splitOperator[0];
-
-        //get secondNumber
-        let splitSecondNum = /\d+$/.exec(input.textContent);
         let secondNumber = splitSecondNum[0];
 
-        input.textContent = operate(firstNumber, operator, secondNumber); 
+        console.log(operator);
+        console.log(secondNumber);
+
+        input.textContent = operate(firstNumber, operator, secondNumber);
         return;
     }
 
