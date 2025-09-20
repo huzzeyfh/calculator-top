@@ -39,20 +39,20 @@ const operate = function (firstNumber, operator, secondNumber) {
     let b = Number(secondNumber);
 
     if (operator === '+') {
-        let sumAdd = add(a, b);
-        console.log(sumAdd);
-    } else if (operator === '-') {
-        let sumSubstract = subtract(a, b);
-        console.log(sumSubstract);
-    } else if (operator === '/') {
-        let sumDivide = divide(a, b);
-        console.log(sumDivide)
-    } else if (operator === 'x') {
-        let sumMultiply = multiply(a, b);
-        console.log(sumMultiply);
+        return add(a, b);
     }
 
-    return ;
+    else if (operator === '-') {
+        return subtract(a, b);
+    }
+
+    else if (operator === '/') {
+        return divide(a, b);
+    }
+
+    else if (operator === 'x') {
+        return multiply(a, b);
+    }
 }
 
 
@@ -85,8 +85,6 @@ container.addEventListener('click', (e) => {
     }
 
     if (e.target.classList.contains('sum-button')) {
-        const filterRe = /\d+.\f+/;
-        const arrCalc = filterRe
 
         //get firstNumber
         let splitFirstNum = /\d+/.exec(input.textContent);
@@ -100,12 +98,8 @@ container.addEventListener('click', (e) => {
         let splitSecondNum = /\d+$/.exec(input.textContent);
         let secondNumber = splitSecondNum[0];
 
-        console.log(input.textContent);
-        console.log(firstNumber);
-        console.log(operator);
-        console.log(secondNumber);
-
-        return operate(firstNumber, operator, secondNumber);
+        input.textContent = operate(firstNumber, operator, secondNumber); 
+        return;
     }
 
     input.textContent += e.target.textContent;
