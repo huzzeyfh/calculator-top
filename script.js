@@ -25,9 +25,6 @@ const button = document.querySelectorAll('button')
 const backspaceButton = document.querySelector('.btn-backspc');
 const clearButton = document.querySelector('.btn-clear');
 const sumButton = document.querySelector('.sum-button');
-// const firstNumber;
-// const operator;
-// const secondNumber;
 const input = document.querySelector('#input');
 
 //
@@ -55,41 +52,30 @@ const operate = function (firstNumber, operator, secondNumber) {
     }
 }
 
-
-
-//Display input
-container.addEventListener('click', (e) => {
-
-
-    if (e.target.tagName != 'BUTTON') return;
-
+//Get input
+function getValue(value) {
     if (input.textContent == 0) {
         input.textContent = '';
     }
 
-    if (e.target.classList.contains('btn-backspc')) {
+    if (value === 'backspace') {
         input.textContent = input.textContent.slice(0, -1);
         if (input.textContent === '') {
             input.textContent = '0';
-            console.log(input.textContent);
-            return;
         }
-        console.log(input.textContent);
         return;
     }
 
-    if (e.target.classList.contains('btn-clear')) {
+    if (value === 'clear') {
         input.textContent = '0';
-        console.log(input.textContent);
         return;
     }
 
-    if (e.target.classList.contains('sum-button')) {
+    if (value === 'sum') {
 
         let separator = /^(-?\d+(?:\.\d+)?)([+\-x\/])(-?\d+(?:\.\d+)?)$/;
 
         let match = separator.exec(input.textContent);
-        console.log(match)
 
         if (match == null) {
             alert('Check your operation!');
@@ -108,8 +94,69 @@ container.addEventListener('click', (e) => {
         return;
     }
 
-    input.textContent += e.target.textContent;
-    console.log(input.textContent);
-    return;
+    input.textContent += value;
+}
+
+//Click event
+container.addEventListener('click', (e) => {
+
+    if (e.target.tagName != 'BUTTON') return;
+
+    if (e.target.classList.contains('btn-backspc')) {
+        getValue('backspace');
+        return;
+    }
+
+    if (e.target.classList.contains('btn-clear')) {
+        getValue('clear');
+        return;
+    }
+
+    if (e.target.classList.contains('sum-button')) {
+        getValue('sum')
+        return;
+    }
+
+    getValue(e.target.textContent);
+});
+
+//Keyboard event
+document.addEventListener('keydown', (e) => {
+    const key = e.key;
+
+    if (!isNaN(key) || ['+', '-', 'x', '/', '.'].includes(key)) {
+        getValue(key);
+    } else if (key === 'Backspace') {
+        getValue('backspace');
+    } else if (key === 'c') {
+        getValue('clear');
+    } else if (key === 'Enter' || key === '=') {
+        getValue('sum');
+    }
+});
+
+container.addEventListener('mouseover', (e) => {
+    const target = e.target
+    if (target.tagName != 'BUTTON') return;
+
+    if (target.style.backgroundColor = '#b3b3b3') {
+        target.style.backgroundColor = '#d9d9d9';
+    }
+
+    if (target.classList.contains('special')) {
+        target.style.backgroundColor = '#ff3333';
+    }
 })
 
+container.addEventListener('mouseout', (e) => {
+    const target = e.target
+    if (target.tagName != 'BUTTON') return;
+
+    if (target.style.backgroundColor = '#d9d9d9') {
+        target.style.backgroundColor = '#b3b3b3';
+    }
+
+    if (target.classList.contains('special')) {
+        target.style.backgroundColor = '#ff0000';
+    }
+})
