@@ -86,9 +86,19 @@ container.addEventListener('click', (e) => {
 
     if (e.target.classList.contains('sum-button')) {
 
-        let separator = /^(-?\d+(?:\.\d+)?)([+\-x\/])(-?\d+(?:\.\d+)?)$/
+        let separator = /^(-?\d+(?:\.\d+)?)([+\-x\/])(-?\d+(?:\.\d+)?)$/;
 
         let match = separator.exec(input.textContent);
+        console.log(match)
+
+        if (match == null) {
+            alert('Check your operation!');
+            return;
+        } else if (match[2] == "/" && match[3] == 0) {
+            alert('Ops, No Bruh..');
+            input.textContent = '0';
+            return;
+        }
 
         let firstNumber = match[1];
         let operator = match[2];
