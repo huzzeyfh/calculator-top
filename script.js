@@ -86,20 +86,13 @@ container.addEventListener('click', (e) => {
 
     if (e.target.classList.contains('sum-button')) {
 
-        let splitFirstNum;
-        let splitOperator;
-        let splitSecondNum;
+        let separator = /^(-?\d+(?:\.\d+)?)([+\-x\/])(-?\d+(?:\.\d+)?)$/
 
-        splitFirstNum = /\d+(\.\d+)?/.exec(input.textContent);
-        splitOperator = /[+\-x\/]/.exec(input.textContent);
-        splitSecondNum = /\d+(\.\d+)?$/.exec(input.textContent);
+        let match = separator.exec(input.textContent);
 
-        let firstNumber = splitFirstNum[0];
-        let operator = splitOperator[0];
-        let secondNumber = splitSecondNum[0];
-
-        console.log(operator);
-        console.log(secondNumber);
+        let firstNumber = match[1];
+        let operator = match[2];
+        let secondNumber = match[3];
 
         input.textContent = operate(firstNumber, operator, secondNumber);
         return;
